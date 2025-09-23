@@ -1,0 +1,243 @@
+version: "3.1"
+
+actions:
+  - action_check_sufficient_funds
+
+slots:
+  recipient:
+    type: text
+    mappings:
+      - type: from_llm
+  amount:
+    type: float
+    mappings:
+      - type: from_llm
+  final_confirmation:
+    type: bool
+    mappings:
+      - type: from_llm
+  has_sufficient_funds:
+    type: bool
+    mappings:
+      - type: controlled
+  product_type:
+    type: text
+    mappings:
+      -type: from_llm
+  variety_fertilizers:
+    type: text
+    mappings:
+      - type: from_llm
+  variety_seeds:
+    type: text
+    mappings:
+      - type: from_llm
+  variety_pesticides:
+    type: text
+    mappings:
+      - type: from_llm
+  variety_tools:
+    type: text
+    mappings:
+      - type: from_llm
+  product_weight:
+    type: text
+    mappings:
+     - type: from_llm
+  product_quantity:
+    type: text
+    mappings:
+      - type: from_llm
+  product_name:
+    type: text
+    mappings:
+      - type: from_llm
+  
+       
+   
+
+responses:
+  utter_ask_product_type:
+    - text: "What type of product are you looking for?"
+      buttons:
+        - title: "Fertilizer"
+          payload: "/SetSlots(product_type=fertilizer)"
+        - title: "Seeds"
+          payload: "/SetSlots(product_type=seeds)"
+        - title: "Pesticides"
+          payload: "/SetSlots(product_type=pesticides)"
+        - title: "Tools"
+          payload: "/SetSlots(product_type=tools)"
+
+  utter_ask_variety_fertilizers:
+    - text: "What variety of fertilizer are you interested in?"
+      buttons:
+        - title: "NPK fertilizers"
+          payload: "/SetSlots(product_variety=npk-fertilizers)"
+        - title: "Secondary nutrients"
+          payload: "/SetSlots(product_variety=secondary-nutrients)"
+        - title: "Micronutrients"
+          payload: "/SetSlots(product_variety=micronutrients)"
+        - title: "Organic"
+          payload: "/SetSlots(product_variety=organic)"
+
+  utter_available_npk_fertilizers:
+    - text: "We have the following NPK fertilizers available. Select from the options below."
+      buttons:
+        - title: "Vegfert 6:15:12"
+          payload: "/SetSlots(product_name=vegfert-6-15-12)"
+        - title: "Maize Compound D"
+          payload: "/SetSlots(product_name=maize-compound-d)"
+        - title: "Quick/Win Start Plus"
+          payload: "/SetSlots(product_name=quick-win-start-plus)"
+        - title: "Compound C"
+          payload: "/SetSlots(product_name=compound-c)"
+
+  utter_available_secondary_nutrients_fertilizers:
+    - text: "We have the following secondary nutrients fertilizers available. Select from the options below."
+      buttons:
+        - title: "Single SuperPhosphate (SSP)"
+          payload: "/SetSlots(product_name=single-superphosphate-ssp)"
+        - title: "Pottasium Magnesium Sulphate"
+          payload: "/SetSlots(product_name=pottasium-magnesium-sulphate)"
+        - title: "Sulphate of Potash"
+          payload: "/SetSlots(product_name=sulphate-of-potash)"
+        - title: "Calcium Sulphate Gypsum"
+          payload: "/SetSlots(product_name=calcium-sulphate-gypsum)"
+
+  utter_available_micronutrients_fertilizers:
+    - text: "We have the following micronutrients fertilizers available. Select from the options below."
+      buttons:
+        - title: "Quick Grow Plus"
+          payload: "/SetSlots(product_name=quick-grow-plus)"
+        - title: "Best Boom Plus"  
+          payload: "/SetSlots(product_name=best-boom-plus)"
+        - title: "ZFC Hydrofert"
+          payload: "/SetSlots(product_name=zfc-hydrofert)"
+
+  utter_available_organic_fertilizers:
+    - text: "We have the following organic fertilizers available. Select from the options below."
+      buttons:
+        - title: "Compost"
+          payload: "/SetSlots(product_name=compost)"
+        - title: "Manure"
+          payload: "/SetSlots(product_name=manure)"
+        - title: "Bone Meal"
+          payload: "/SetSlots(product_name=bone-meal)"
+
+  utter_available_insecticides:
+  - text: "We have the following insecticides in stock as of now."
+    buttons:
+    - title: "Actellic"
+      payload: "/SetSlots(product_name=actellic)"
+    - title: "Ampligo"
+      payload: "/SetSlots(product_name=ampligo)"
+    - title: "Belt"
+      payload: "/SetSlots(product_name=belt)"
+
+  utter_ask_variety_seeds:
+    - text: "We only have maize seeds available.Select from the options below."
+      buttons:
+        - title: "ZAP 31"
+          payload: "/SetSlots(product_variety=zap-31)"
+        - title: "ZAP 43"
+          payload: "/SetSlots(product_variety=zap-43)"
+        - title: "ZAP 55"
+          payload: "/SetSlots(product_variety=zap-55)"
+        - title: "ZAP 61"
+          payload: "/SetSlots(product_variety=zap-61)"
+        - title: "ZAP 611"
+          payload: "/SetSlots(product_variety=zap-611)"
+        - title: "ZAP 73"
+          payload: "/SetSlots(product_variety=zap-73)"
+
+
+  utter_ask_variety_pesticides:
+    - text: "What variety of pesticide are you interested in?"
+      buttons:
+        - title: "Insecticides"
+          payload: "/SetSlots(product_variety=insecticides)"
+        - title: "Herbicides"
+          payload: "/SetSlots(product_variety=herbicides)"
+        - title: "Fungicides" 
+          payload: "/SetSlots(product_variety=fungicides)"
+        - title: "Rodenticides" 
+          payload: "/SetSlots(product_variety=rodenticides)"
+
+  utter_available_herbicides_pesticides:
+    - text: "We have the folowing herbicides in stoock as of now "
+      buttons:
+        - title: "Glyphosate"
+          payload: "/SetSlots(product_variety=fungicides)"
+        - title: "Atrazine"
+          payload: "/SetSlots(product_variety=atrazine)"
+
+  utter_ask_variety_tools:
+    - text: "What variety of tools are you interested in?"
+      buttons: 
+        - title: "Power tools"
+          payload: "/SetSlots(product_variety=power-tools)"
+        - title: "Cutting tools"
+          payload: "/SetSlots(product_variety=cutting-tools)"
+        - title: "Watering tools"
+          payload: "/SetSlots(product_variety=watering-tools)"
+        - title: "Fertilizing tools"
+          payload: "/SetSlots(product_variety=fertilizing-tools)"
+ 
+  utter_ask_product_weight:
+    - text: "Select the axact weight you want from the following?"
+      buttons:
+        - title: "2kg"
+          payload: "/SetSlots(product_weight=2kg)"
+        - title: "5kg"
+          payload: "/SetSlots(product_weight=5kg)"
+        - title: "10kg"
+          payload: "/SetSlots(product_weight=10kg)"
+
+  utter_ask_product_quantity:
+    - text: "How many bags of {product_variety} {product_type} would you like to purchase?"
+
+  utter_product_info_summary:
+    - text: "Great choice! You have selected {product_quantity_fertilizers_and_seeds} bags which weigh {product_weight}  of {product_variety} {product_type}. The price is $XX per bag. Would you like to proceed to checkout?"  
+
+  utter_how_many_tools:
+    - text: "How many {product_variety} tools would you like to purchase?"
+
+  utter_almost_there:
+    - text : "Almost there! Just a few more details."
+
+  utter_ask_recipient:
+    - text: "Who would you like to send money to?"
+
+  utter_ask_amount:
+    - text: "How much money would you like to send?"
+
+  utter_transfer_complete:
+    - text: "All done. {amount} has been sent to {recipient}."
+
+  utter_ask_final_confirmation:
+   - text: "Please confirm: you want to transfer {amount} to {recipient}?"
+
+  utter_transfer_cancelled:
+    - text: "Your transfer has been cancelled."
+
+
+  utter_insufficient_funds:
+    - text: "You do not have enough funds to make this transaction."
+
+  utter_greet_user:
+    - text: "Hello 👋! Welcome to AgriStore, your one-stop shop for fertilizers, seeds, pesticides, and tools."
+
+  utter_free_chitchat_response:
+    - text: "placeholder"
+      metadata:
+        rephrase: True
+        rephrase_prompt: |
+          The following is a conversation with an AI assistant built with Rasa.
+          The assistant can help the user transfer money.
+          The assistant is helpful, creative, clever, and very friendly.
+          The user is making small talk, and the assistant should respond, keeping things light.
+          Context / previous conversation with the user:
+          {{history}}
+          {{current_input}}
+          Suggested AI Response:

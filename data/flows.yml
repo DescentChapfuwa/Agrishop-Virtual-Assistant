@@ -1,0 +1,98 @@
+flows:
+  greet_user:
+    description: Greet user at the start of the conversation before they anything and introduce what the chatbot does
+    steps:
+      - action: utter_greet_user
+
+  transfer_money:
+    description: Help users send money to friends and family.
+    steps:
+      - collect: recipient
+      - collect: amount
+        description: the number of US dollars to send
+      - action: action_check_sufficient_funds
+        next:
+          - if: not slots.has_sufficient_funds
+            then:
+              - action: utter_insufficient_funds
+                next: END
+          - else: final_confirmation
+      - collect: final_confirmation
+        id: final_confirmation
+        next:
+         - if: not slots.final_confirmation
+           then:
+              - action: utter_transfer_cancelled
+                next: END
+         - else: transfer_successful
+      - action: utter_transfer_complete
+        id: transfer_successful
+          
+  product_inquiry:
+     description : help users to select the farming products they desire to buy based on what is available.
+     steps:
+       - collect: product_type
+         description: the type of farming product the customer wishes to buy
+         next:
+           - if: slot.product_type = "fertilizer"
+             then:
+               link: fertilizers
+           - if: slot.product_type = "seeds"
+             then:
+               link: seeds
+           - if: slot.product_type = "pesticides"
+             then:
+               link:  pesticides
+           - else:
+               link: tools
+
+  fertilizers:
+    description : a pathway for guiding  users who require to buy fertilizers.
+    steps:
+      - collect: variety_fertilizers
+        description: collection of the different type of fertilisers available.
+        next:
+          - if: slot.variety_fertilizers = "npk-fertilizers"
+            then:
+              action: utter_available_npk_fertilizers
+          - if: slot.variety_fertilizers = "secondary_nutrients"
+            then:
+              action: utter_available_secondary_nutrients_fertilizers
+          - if: slot.variety_fertilizers = "micro-nutrients"
+            then:
+              action: utter_available_micro_nutrients_fertilizers
+          - else:
+              action: utter_available_organic_fertilizers
+      - collect: product_weight
+        description: the weight of the fertilizer  the customer wishes to buy in terms of kilogrammes
+      - collect: product_quantity
+        description: the amount or the quantity of bags of fertilizers needed by the customer.
+      - action: utter_product_info_summary
+
+  pesticides:
+      description : a pathway for guiding  users who require to buy pesticides.
+      steps:
+        - collect: variety_pesticides
+          description: collection of the different type of pesticides available.
+          next:
+            - if: slot.variety_pesticides = "insecticides"
+              then:
+                action: utter_available_insecticides
+            - if: slot.variety_pesticides = "herbicides"
+              then:
+                action: utter_available_herbicides_pesticides
+            - if: slot.variety_pesticides = "fungicides"
+              then:
+                action: utter_available_fungicides
+            - else:
+                action: utter_available_organic_fertilizers
+        - collect: product_weight
+          description: the weight of the fertilizer  the customer wishes to buy in terms of kilogrammes
+        - collect: product_quantity
+          description: the amount or the quantity of bags of fertilizers needed by the customer.
+        - action: utter_product_info_summary
+
+              
+            
+          
+    
