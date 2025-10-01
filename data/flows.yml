@@ -34,17 +34,17 @@ flows:
        - collect: product_type
          description: the type of farming product the customer wishes to buy
          next:
-           - if: slot.product_type = "fertilizer"
+           - if: slots.product_type = "fertilizer"
              then:
-               link: fertilizers
-           - if: slot.product_type = "seeds"
+               - link: fertilizers
+           - if: slots.product_type = "seeds"
              then:
-               link: seeds
-           - if: slot.product_type = "pesticides"
+               - link: seeds
+           - if: slots.product_type = "pesticides"
              then:
-               link:  pesticides
+               - link:  pesticides
            - else:
-               link: tools
+               - link: tools
 
   fertilizers:
     description : a pathway for guiding  users who require to buy fertilizers.
@@ -52,22 +52,27 @@ flows:
       - collect: variety_fertilizers
         description: collection of the different type of fertilisers available.
         next:
-          - if: slot.variety_fertilizers = "npk-fertilizers"
+          - if: slots.variety_fertilizers = "npk-fertilizers"
             then:
-              action: utter_available_npk_fertilizers
-          - if: slot.variety_fertilizers = "secondary_nutrients"
+              - action: utter_available_npk_fertilizers
+                next: weight
+          - if: slots.variety_fertilizers = "secondary_nutrients"
             then:
-              action: utter_available_secondary_nutrients_fertilizers
-          - if: slot.variety_fertilizers = "micro-nutrients"
+              - action: utter_available_secondary_nutrients_fertilizers
+                next: weight
+          - if: slots.variety_fertilizers = "micro-nutrients"
             then:
-              action: utter_available_micro_nutrients_fertilizers
+              - action: utter_available_micro_nutrients_fertilizers
+                next: weight
           - else:
-              action: utter_available_organic_fertilizers
+              - action: utter_available_organic_fertilizers
+                next: weight
       - collect: product_weight
+        id: weight
         description: the weight of the fertilizer  the customer wishes to buy in terms of kilogrammes
-      - collect: product_quantity
+      - collect: product_quantity_fertilizer
         description: the amount or the quantity of bags of fertilizers needed by the customer.
-      - action: utter_product_info_summary
+      - action: utter_product_info_summary_fertilizer
 
   pesticides:
       description : a pathway for guiding  users who require to buy pesticides.
@@ -75,22 +80,73 @@ flows:
         - collect: variety_pesticides
           description: collection of the different type of pesticides available.
           next:
-            - if: slot.variety_pesticides = "insecticides"
+            - if: slots.variety_pesticides = "insecticides"
               then:
-                action: utter_available_insecticides
-            - if: slot.variety_pesticides = "herbicides"
+                - action: utter_available_insecticides
+                  next: weight
+            - if: slots.variety_pesticides = "herbicides"
               then:
-                action: utter_available_herbicides_pesticides
-            - if: slot.variety_pesticides = "fungicides"
+                - action: utter_available_herbicides_pesticides
+                  next: weight
+            - if: slots.variety_pesticides = "fungicides"
               then:
-                action: utter_available_fungicides
+                - action: utter_available_fungicides
+                  next: weight
             - else:
-                action: utter_available_organic_fertilizers
-        - collect: product_weight
-          description: the weight of the fertilizer  the customer wishes to buy in terms of kilogrammes
-        - collect: product_quantity
-          description: the amount or the quantity of bags of fertilizers needed by the customer.
-        - action: utter_product_info_summary
+                - action: utter_available_rodenticides
+                  next: weight
+        - collect: product_weight_pesticides
+          id: weight
+          description: the amount of pesticides in mililitres or litres  the customer wishes to buy
+        - collect: product_quantity_pesticides
+          description: the quantity in bottles of the pesticides needed by the customer.
+        - action: utter_product_info_summary_pesticides
+
+  seeds:
+    description : a pathway for guiding  users who require to buy seeds.
+    steps:
+      - collect: variety_seeds
+        description: collection of the different type of seeds available.      
+      - collect: product_weight
+        description: the amount of pesticides in mililitres or litres  the customer wishes to buy
+      - collect: product_quantity_seeds
+        description: the quantity in bottles of the pesticides needed by the customer.
+      - action: utter_product_info_summary_seeds
+
+  tools:
+    description : a pathway for guiding  users who require to buy tools.
+    steps:
+      - collect: variety_tools
+        description: collection of the different type of tools available.
+        next:
+          - if: slots.variety_tools = "power-tools"
+            then:
+              - action: utter_available_power_tools
+                next: summary
+          - if: slots.variety_tools = "cutting-tools"
+            then:
+              - action: utter_available_cutting_tools
+                next: summary
+          - if: slots.variety_tools = "watering-tools"
+            then:
+              - action: utter_available_watering_tools
+                next: summary
+          - else:
+              - action: utter_available_fertilizing_tools
+                next: summary
+      - action: utter_product_info_summary_tools
+        id: summary
+        next: 
+          - if: slots.product_name = "horsepipe"
+            then:
+              - action: utter_how_long
+                next: END
+          - else:
+            - collect: product_quantity_tools
+              next: END
+               
+
+        
 
               
             
