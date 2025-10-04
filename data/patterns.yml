@@ -9,3 +9,8 @@ flows:
     name: pattern search
     steps:
       - action: utter_free_chitchat_response
+  pattern_session_start:
+    description: Special flow that is run at the beginning of every conversation, before any user input has been received. It can be used to set up the initial state of the conversation, for example by setting initial slot values or uttering a welcome message.
+    name: pattern session start
+    steps:
+      - action: utter_greet_user

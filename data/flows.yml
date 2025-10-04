@@ -46,32 +46,43 @@ flows:
            - else:
                - link: tools
 
+
   fertilizers:
-    description : a pathway for guiding  users who require to buy fertilizers.
+    description: A pathway for guiding users who require to buy fertilizers
     steps:
       - collect: variety_fertilizers
-        description: collection of the different type of fertilisers available.
+        description: Collection of the different type of fertilizers available
         next:
           - if: slots.variety_fertilizers = "npk-fertilizers"
             then:
               - action: utter_available_npk_fertilizers
-                next: weight
+              - collect: product_name
+                description: The specific NPK fertilizer product the customer wants to buy
+                next: weight_step
           - if: slots.variety_fertilizers = "secondary_nutrients"
             then:
               - action: utter_available_secondary_nutrients_fertilizers
-                next: weight
+              - collect: product_name
+                description: The specific secondary nutrients fertilizer product the customer wants to buy
+                next: weight_step
           - if: slots.variety_fertilizers = "micro-nutrients"
             then:
               - action: utter_available_micro_nutrients_fertilizers
-                next: weight
+              - collect: product_name
+                description: The specific micro-nutrients fertilizer product the customer wants to buy
+                next: weight_step
           - else:
               - action: utter_available_organic_fertilizers
-                next: weight
-      - collect: product_weight
-        id: weight
-        description: the weight of the fertilizer  the customer wishes to buy in terms of kilogrammes
+              - collect: product_name
+                description: The specific organic fertilizer product the customer wants to buy
+                next: weight_step      
+      - id: weight_step
+        collect: product_weight
+        description: The weight of the fertilizer the customer wishes to buy in kilograms
+      
       - collect: product_quantity_fertilizer
-        description: the amount or the quantity of bags of fertilizers needed by the customer.
+        description: The amount or quantity of bags of fertilizers needed by the customer
+      
       - action: utter_product_info_summary_fertilizer
 
   pesticides:
@@ -122,20 +133,20 @@ flows:
           - if: slots.variety_tools = "power-tools"
             then:
               - action: utter_available_power_tools
-                next: summary
+                next: summarry
           - if: slots.variety_tools = "cutting-tools"
             then:
               - action: utter_available_cutting_tools
-                next: summary
+                next: summarry
           - if: slots.variety_tools = "watering-tools"
             then:
               - action: utter_available_watering_tools
-                next: summary
+                next: summarry
           - else:
               - action: utter_available_fertilizing_tools
-                next: summary
+                next: summarry
       - action: utter_product_info_summary_tools
-        id: summary
+        id: summarry
         next: 
           - if: slots.product_name = "horsepipe"
             then:

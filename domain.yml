@@ -115,6 +115,9 @@ responses:
         - title: "Compound C"
           payload: "/SetSlots(product_name=compound-c)"
 
+  utter_ask_product_name:
+    - text: "Please select the specific product you'd like to purchase."
+
   utter_available_secondary_nutrients_fertilizers:
     - text: "We have the following secondary nutrients fertilizers available. Select from the options below."
       buttons:
