@@ -55,25 +55,21 @@ flows:
         next:
           - if: slots.variety_fertilizers = "npk-fertilizers"
             then:
-              - action: utter_available_npk_fertilizers
-              - collect: product_name
+              - collect: npk_fertilizer
                 description: The specific NPK fertilizer product the customer wants to buy
                 next: weight_step
           - if: slots.variety_fertilizers = "secondary_nutrients"
             then:
-              - action: utter_available_secondary_nutrients_fertilizers
-              - collect: product_name
+              - collect: secondary_nutrients
                 description: The specific secondary nutrients fertilizer product the customer wants to buy
                 next: weight_step
           - if: slots.variety_fertilizers = "micro-nutrients"
             then:
-              - action: utter_available_micro_nutrients_fertilizers
-              - collect: product_name
+              - collect: micro_nutrients
                 description: The specific micro-nutrients fertilizer product the customer wants to buy
                 next: weight_step
           - else:
-              - action: utter_available_organic_fertilizers
-              - collect: product_name
+              - collect: organic_fertilizer
                 description: The specific organic fertilizer product the customer wants to buy
                 next: weight_step      
       - id: weight_step
@@ -93,18 +89,18 @@ flows:
           next:
             - if: slots.variety_pesticides = "insecticides"
               then:
-                - action: utter_available_insecticides
+                - collect: insecticides
                   next: weight
             - if: slots.variety_pesticides = "herbicides"
               then:
-                - action: utter_available_herbicides_pesticides
+                - collect: herbicides
                   next: weight
             - if: slots.variety_pesticides = "fungicides"
               then:
-                - action: utter_available_fungicides
+                - collect: fungicides
                   next: weight
             - else:
-                - action: utter_available_rodenticides
+                - collect: rodenticides
                   next: weight
         - collect: product_weight_pesticides
           id: weight
@@ -132,21 +128,21 @@ flows:
         next:
           - if: slots.variety_tools = "power-tools"
             then:
-              - action: utter_available_power_tools
-                next: summarry
+              - collect: power_tools
+                next: summary
           - if: slots.variety_tools = "cutting-tools"
             then:
-              - action: utter_available_cutting_tools
-                next: summarry
+              - collect: cutting_tools
+                next: summary
           - if: slots.variety_tools = "watering-tools"
             then:
-              - action: utter_available_watering_tools
-                next: summarry
+              - collect: watering_tools
+                next: summary
           - else:
-              - action: utter_available_fertilizing_tools
-                next: summarry
+              - collect: fertilizing_tools
+                next: summary
       - action: utter_product_info_summary_tools
-        id: summarry
+        id: summary
         next: 
           - if: slots.product_name = "horsepipe"
             then:

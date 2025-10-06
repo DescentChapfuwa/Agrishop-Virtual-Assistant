@@ -72,6 +72,54 @@ slots:
     type: text
     mappings:
       - type: from_llm
+  npk_fertilizer:
+    type: text
+    mappings:
+      - type: from_llm
+  secondary_nutrients:
+    type: text
+    mappings:
+      - type: from_llm
+  micro_nutrients:
+    type: text
+    mappings:
+      - type: from_llm
+  organic_fertilizer:
+    type: text
+    mappings:
+      - type: from_llm
+  insecticides:
+    type: text
+    mappings:
+      - type: from_llm
+  herbicides:
+    type: text
+    mappings:
+      - type: from_llm
+  fungicides:
+    type: text
+    mappings:
+      - type: from_llm
+  rodenticides:
+    type: text
+    mappings:
+      - type: from_llm
+  power_tools:
+    type: text
+    mappings:
+      - type: from_llm
+  cutting_tools:
+    type: text
+    mappings:
+      - type: from_llm
+  watering_tools:
+    type: text
+    mappings:
+      - type: from_llm
+  fertilizing_tools:
+    type: text
+    mappings:
+      - type: from_llm
   
 
   
@@ -103,62 +151,62 @@ responses:
         - title: "Organic"
           payload: "/SetSlots(variety_fertilizers=organic)"
 
-  utter_available_npk_fertilizers:
+  utter_ask_npk_fertilizer:
     - text: "We have the following NPK fertilizers available. Select from the options below."
       buttons:
         - title: "Vegfert 6:15:12"
-          payload: "/SetSlots(product_name=vegfert-6-15-12)"
+          payload: "/SetSlots(npk_fertilizer=vegfert-6-15-12)"
         - title: "Maize Compound D"
-          payload: "/SetSlots(product_name=maize-compound-d)"
+          payload: "/SetSlots(npk_fertilizer=maize-compound-d)"
         - title: "Quick/Win Start Plus"
-          payload: "/SetSlots(product_name=quick-win-start-plus)"
+          payload: "/SetSlots(npk_fertilizer=quick-win-start-plus)"
         - title: "Compound C"
-          payload: "/SetSlots(product_name=compound-c)"
+          payload: "/SetSlots(npk_fertilizer=compound-c)"
 
   utter_ask_product_name:
     - text: "Please select the specific product you'd like to purchase."
 
-  utter_available_secondary_nutrients_fertilizers:
+  utter_ask_secondary_nutrients:
     - text: "We have the following secondary nutrients fertilizers available. Select from the options below."
       buttons:
         - title: "Single SuperPhosphate (SSP)"
-          payload: "/SetSlots(product_name=single-superphosphate-ssp)"
+          payload: "/SetSlots(secondary_nutrients=single-superphosphate-ssp)"
         - title: "Pottasium Magnesium Sulphate"
-          payload: "/SetSlots(product_name=pottasium-magnesium-sulphate)"
+          payload: "/SetSlots(secondary_nutrients=pottasium-magnesium-sulphate)"
         - title: "Sulphate of Potash"
-          payload: "/SetSlots(product_name=sulphate-of-potash)"
+          payload: "/SetSlots(secondary_nutrients=sulphate-of-potash)"
         - title: "Calcium Sulphate Gypsum"
-          payload: "/SetSlots(product_name=calcium-sulphate-gypsum)"
+          payload: "/SetSlots(secondary_nutrients=calcium-sulphate-gypsum)"
 
-  utter_available_micro_nutrients_fertilizers:
+  utter_ask_micro_nutrients:
     - text: "We have the following micronutrients fertilizers available. Select from the options below."
       buttons:
         - title: "Quick Grow Plus"
-          payload: "/SetSlots(product_name=quick-grow-plus)"
-        - title: "Best Boom Plus"  
-          payload: "/SetSlots(product_name=best-boom-plus)"
+          payload: "/SetSlots(micro_nutrients=quick-grow-plus)"
+        - title: "Best Boom Plus"
+          payload: "/SetSlots(micro_nutrients=best-boom-plus)"
         - title: "ZFC Hydrofert"
-          payload: "/SetSlots(product_name=zfc-hydrofert)"
+          payload: "/SetSlots(micro_nutrients=zfc-hydrofert)"
 
-  utter_available_organic_fertilizers:
+  utter_ask_organic_fertilizer:
     - text: "We have the following organic fertilizers available. Select from the options below."
       buttons:
         - title: "Compost"
-          payload: "/SetSlots(product_name=compost)"
+          payload: "/SetSlots(organic_fertilizer=compost)"
         - title: "Manure"
-          payload: "/SetSlots(product_name=manure)"
+          payload: "/SetSlots(organic_fertilizer=manure)"
         - title: "Bone Meal"
-          payload: "/SetSlots(product_name=bone-meal)"
+          payload: "/SetSlots(organic_fertilizer=bone-meal)"
 
-  utter_available_insecticides:
+  utter_ask_insecticides:
   - text: "We have the following insecticides in stock as of now."
     buttons:
     - title: "Actellic"
-      payload: "/SetSlots(product_name=actellic)"
+      payload: "/SetSlots(insecticides=actellic)"
     - title: "Ampligo"
-      payload: "/SetSlots(product_name=ampligo)"
+      payload: "/SetSlots(insecticides=ampligo)"
     - title: "Belt"
-      payload: "/SetSlots(product_name=belt)"
+      payload: "/SetSlots(insecticides=belt)"
 
   utter_ask_product_weight_pesticides:
   - text: "Select the amount of mls you want from the following"
@@ -211,73 +259,73 @@ responses:
         - title: "Rodenticides" 
           payload: "/SetSlots(variety_pesticides=rodenticides)"
 
-  utter_available_herbicides_pesticides:
+  utter_ask_herbicides:
     - text: "We have the folowing herbicides in stoock as of now "
       buttons:
         - title: "Glyphosate"
-          payload: "/SetSlots(product_name=glyphosate)"
+          payload: "/SetSlots(herbicides=glyphosate)"
         - title: "Atrazine"
-          payload: "/SetSlots(product_name=atrazine)"
+          payload: "/SetSlots(herbicides=atrazine)"
 
-  utter_available_fungicides:
+  utter_ask_fungicides:
     - text: "We have the following fungicides in stock as of now"
       buttons:
       - title: "Dithane M45"
-        payload: "/SetSlots(product_name=dithane-m45)"
+        payload: "/SetSlots(fungicides=dithane-m45)"
       - title: "Kumir Fungicides"
-        payload: "/SetSlots(product_name=kumir-fungicides)"
+        payload: "/SetSlots(fungicides=kumir-fungicides)"
       - title: "Ordan Fungicides"
-        payload: "/SetSlots(product_name=ordan-fungicides)"
+        payload: "/SetSlots(fungicides=ordan-fungicides)"
 
-  utter_available_rodenticides:
+  utter_ask_rodenticides:
     - text: "We have the following fungicides in stock as of now"
       buttons:
       - title: "Pulse Pellets"
-        payload: "/SetSlots(product_name=pulse-pellets)"
+        payload: "/SetSlots(rodenticides=pulse-pellets)"
       - title: "Pulse Liquid Bait"
-        payload: "/SetSlots(product_name=pulse-liquid-bait)"
+        payload: "/SetSlots(rodenticides=pulse-liquid-bait)"
       - title: "Pulse Wax Blocks"
-        payload: "/SetSlots(product_name=pulse-wax-blocks)"
+        payload: "/SetSlots(rodenticides=pulse-wax-blocks)"
 
-  utter_available_fertilizing_tools:
+  utter_ask_fertilizing_tools:
     - text: "We have the following fertilizing tools as of now"
       buttons:
       - title: "Fertilizer Spreader"
-        payload: "/SetSlots(product_name=fertilizer-spreader)"
+        payload: "/SetSlots(fertilizing_tools=fertilizer-spreader)"
       - title: "Knapsack"
-        payload: "/SetSlots(product_name=knapsack)"
+        payload: "/SetSlots(fertilizing_tools=knapsack)"
       - title: "Boom Sprayer"
-        payload: "/SetSlots(product_name=boom-sprayer)"
+        payload: "/SetSlots(fertilizing_tools=boom-sprayer)"
 
-  utter_available_power_tools:
+  utter_ask_power_tools:
     - text: "We have the following power tools as of now"
       buttons:
       - title: "Tractors"
-        payload: "/SetSlots(product_name=tractors)"
+        payload: "/SetSlots(power_tools=tractors)"
       - title: "Rotavators"
-        payload: "/SetSlots(product_name=rotavators)"
+        payload: "/SetSlots(power_tools=rotavators)"
       - title: "Combine harvesters"
-        payload: "/SetSlots(product_name=combine-harvesters)"
+        payload: "/SetSlots(power_tools=combine-harvesters)"
 
-  utter_available_cutting_tools:
+  utter_ask_cutting_tools:
     - text: "We have the following cutting tools as of now"
       buttons:
       - title: "Cutlass"
-        payload: "/SetSlots(product_name=cutlass)"
+        payload: "/SetSlots(cutting_tools=cutlass)"
       - title: "Axe"
-        payload: "/SetSlots(product_name=axe)"
+        payload: "/SetSlots(cutting_tools=axe)"
       - title: "Sickle"
-        payload: "/SetSlots(product_name=sickle)"
+        payload: "/SetSlots(cutting_tools=sickle)"
 
-  utter_available_watering_tools:
+  utter_ask_watering_tools:
     - text: "We have the following watering tools as of now"
       buttons:
       - title: "Sprinklers"
-        payload: "/SetSlots(product_name=sprinklers)"
+        payload: "/SetSlots(watering_tools=sprinklers)"
       - title: "Horsepipe"
-        payload: "/SetSlots(product_name=horsepipe)"
+        payload: "/SetSlots(watering_tools=horsepipe)"
       - title: "Watering cans"
-        payload: "/SetSlots(product_name=watering-cans)"
+        payload: "/SetSlots(watering_tools=watering-cans)"
 
   utter_ask_variety_tools:
     - text: "What variety of tools are you interested in?"
@@ -314,13 +362,13 @@ responses:
     - text: "How many {product_name}s  in the {variety_tools} section would you like to purchase?"
 
   utter_product_info_summary_fertilizer:
-    - text: "Great choice! You have selected {product_quantity_fertilizer} bags which weigh {product_weight}  of {variety_fertilizers} {product_type}. The price is $XX per bag. Would you like to proceed to checkout?"
+    - text: "Great choice! You have selected {product_quantity_fertilizer} bags which weigh {product_weight}  of {product_name} {product_type}. The price is $XX per bag. Would you like to proceed to checkout?"
 
   utter_product_info_summary_seeds:
     - text: "Great choice! You have selected {product_quantity_seeds} bags which weigh {product_weight}  of {product_name} {product_type}. The price is $XX per bag. Would you like to proceed to checkout?"  
 
   utter_product_info_summary_pesticides:
-    - text: "Great choice! You have selected {product_quantity} bottles which are {product_weight}  of {product_variety} {product_type}. The price is $XX per bag. Would you like to proceed to checkout?"
+    - text: "Great choice! You have selected {product_quantity} bottles which are {product_weight}  of {product_name} {product_type}. The price is $XX per bag. Would you like to proceed to checkout?"
 
   utter_product_info_summary_tools:
     - text: "You have selected {product_name} of the {product_variety} lets finish up"
